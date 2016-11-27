@@ -11,7 +11,7 @@ import static methods.dataBase.ConnectionDB.*;
 public class QuestMethod {
     public static void createQuest(Integer idCourse) throws SQLException {
         Scanner printOpt = new Scanner(System.in);
-        System.out.println("Введите задание: ");
+        System.out.println("Enter Question: ");
         String question = printOpt.nextLine();
 
         stmt.execute("INSERT INTO Question (theQuest) VALUES (" + "'" + question + "')");
@@ -49,7 +49,7 @@ public class QuestMethod {
         stmt.execute("SELECT * FROM Student");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано студентов. Пожалуйста, создайте студента.");
+            System.out.println("Not created students. Please, create student.");
         } else {
             stmt.execute("SELECT * FROM  QuestionCourse WHERE idCourse = " + idCourse);
             res = stmt.getResultSet();
@@ -75,10 +75,10 @@ public class QuestMethod {
                 ResDisconnect();
             }
             if (denominator == 0) {
-                System.out.println(" Студент только поступил на курс");
+                System.out.println("Student recent enrolled on a course.");
             } else {
                 String formSum = String.format("%.2f", +sum / denominator);
-                System.out.println(" Средний бал: " + formSum + "%" + "(" + denominator + " задания(й))");
+                System.out.println(" GPA: " + formSum + "%" + "(" + denominator + " questions)");
                 enableQuestions.clear();
             }
         }
@@ -92,7 +92,7 @@ public class QuestMethod {
             stmt.execute("SELECT * FROM Course");
             res = stmt.getResultSet();
             if (!res.next()) {
-                System.out.println("Еще не создано курсов. Пожалуйста, создайте курс.");
+                System.out.println("Not created courses. Please, create course.");
             } else {
                 if (checkIDforValid(id)) {
                     Integer idCourse = new Integer(id);
@@ -118,7 +118,7 @@ public class QuestMethod {
                                 stmt.execute("SELECT * FROM  Question WHERE questionId = " + enableQuestion);
                                 res = stmt.getResultSet();
                                 String q = res.getString("theQuest");
-                                System.out.println("Вопрос " + list + ": " + q);
+                                System.out.println("Question " + list + ": " + q);
                                 list++;
                                 StmtDisconnect();
                                 ResDisconnect();

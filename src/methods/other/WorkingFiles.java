@@ -21,7 +21,7 @@ public class WorkingFiles {
                 stmt.execute("SELECT * FROM Course");
                 res = stmt.getResultSet();
                 if (!res.next()) {
-                    System.out.println("Еще не создано курсов. Пожалуйста, создайте курс.");
+                    System.out.println("Not created courses. Please, create course.");
                 } else {
                     if (checkIDforValid(id)) {
                         Integer idCourse = new Integer(id);

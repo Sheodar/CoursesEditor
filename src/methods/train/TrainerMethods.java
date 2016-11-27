@@ -13,7 +13,7 @@ public class TrainerMethods {
         stmt.execute("SELECT * FROM Course");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано курсов. Пожалуйста, создайте курс.");
+            System.out.println("Not created courses. Please, create course.");
         } else {
             stmt.execute("SELECT * FROM    Course  WHERE  courseId = (SELECT MAX(courseId)  FROM Course);");
             res = stmt.getResultSet();
@@ -21,9 +21,9 @@ public class TrainerMethods {
             StmtDisconnect();
             ResDisconnect();
             Scanner printOpt = new Scanner(System.in);
-            System.out.println("Введите имя тренера:");
+            System.out.println("Enter trainer name:");
             String trainerName = printOpt.nextLine();
-            System.out.println("Введите фамилию тренера:");
+            System.out.println("Enter trainer surname:");
             String trainerSurname = printOpt.nextLine();
             stmt.execute("INSERT INTO Trainer (trainerName, trainerSurname) VALUES (" +
                     "'" + trainerName + "','" + trainerSurname + "')");
@@ -35,12 +35,12 @@ public class TrainerMethods {
             ResDisconnect();
             metka:
             while (true) {
-                System.out.println("Введите ID курса, который будет преподавать тренер:");
+                System.out.println("Enter ID course, on which will teach trainer:");
                 String addTrainerID = printOpt.nextLine();
                 if (checkIDforValid(addTrainerID)) {
                     Integer addTrainerIDint = new Integer(addTrainerID);
                     if (addTrainerIDint > maxCourse) {
-                        System.out.println("Такого курса не найдено");
+                        System.out.println("This course not found.");
                         break;
                     }
                     if (addTrainerIDint <= maxCourse & addTrainerIDint > 0) {
@@ -48,14 +48,14 @@ public class TrainerMethods {
                         StmtDisconnect();
                     }
                     while (true) {
-                        System.out.println("Еще какие-то курсы? [y/n]");
+                        System.out.println("More? [y/n]");
                         String addTrainerCourse = printOpt.nextLine();
                         switch (addTrainerCourse) {
                             case "n":
                                 break metka;
                             case "y":
                                 while (true) {
-                                    System.out.println("Введите ID курса, на который поступает студент:");
+                                    System.out.println("Enter ID course, on which will teach trainer:");
                                     String addCourseTrainer = printOpt.nextLine();
                                     if (checkIDforValid(addCourseTrainer)) {
                                         Integer addCourseTrainerIDint = new Integer(addCourseTrainer);
@@ -83,7 +83,7 @@ public class TrainerMethods {
         stmt.execute("SELECT * FROM Trainer");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано Тренеров. Пожалуйста, создайте тренера.");
+            System.out.println("Not created trainers. Please, create trainer.");
         } else {
             try {
                 if (checkIDforValid(ID)) {
@@ -104,14 +104,14 @@ public class TrainerMethods {
                         String surname = res.getString("trainerSurname");
                         StmtDisconnect();
                         ResDisconnect();
-                        System.out.println("ID: [" + Id + "]; Имя: " + name + ", Фамилия: " + surname);
-                        System.out.println("\tКурсы, которые преподает: ");
+                        System.out.println("ID: [" + Id + "]; Name: " + name + ", Surname: " + surname);
+                        System.out.println("\tCourse, which teaches: ");
                         stmt.execute("SELECT Course.*, TrainerCourse.* FROM Course INNER JOIN TrainerCourse  ON Course.courseId = TrainerCourse.idCourse AND  TrainerCourse.idTrainer = " + id);
                         res = stmt.getResultSet();
 
                         while (res.next()) {
                             String nameCourse = res.getString("courseName");
-                            System.out.println("\t\t ‣ Название: " + nameCourse + ".");
+                            System.out.println("\t\t ‣ Name: " + nameCourse + ".");
                         }
                         StmtDisconnect();
                         ResDisconnect();
@@ -132,7 +132,7 @@ public class TrainerMethods {
         stmt.execute("SELECT * FROM Trainer");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано Тренеров. Пожалуйста, создайте тренера.");
+            System.out.println("Not created trainers. Please, create trainer.");
         } else {
             Scanner printOpt = new Scanner(System.in);
             if (checkIDforValid(ID)) {
@@ -146,13 +146,13 @@ public class TrainerMethods {
                 if (id > maxTrainer | id < 0) {
                     System.out.println("[Invalid command]");
                 } else {
-                    System.out.println("[1]- Изменить курсы; [2]- Изменить имя; [3]- Изменить фамилию [4]- Назад;");
+                    System.out.println("[1]- Change courses; [2]- Change name; [3]- Change surname [4]- Back;");
                     metka:
                     while (true) {
                         String outConsoleCatOpt = printOpt.nextLine();
                         switch (outConsoleCatOpt) {
                             case "1":
-                                System.out.println("[1]- Удалить курс; [2]- Добавить курс; [3]- Назад;");
+                                System.out.println("[1]- Delete course; [2]- Add course; [3]- Back;");
                                 metka1:
                                 while (true) {
                                     String changeTrainersCourse = printOpt.nextLine();
@@ -169,13 +169,13 @@ public class TrainerMethods {
                                 }
                                 break;
                             case "2":
-                                System.out.println("Введите новое имя");
+                                System.out.println("Enter new name: ");
                                 String newName = printOpt.nextLine();
                                 stmt.execute("UPDATE Trainer SET trainerName = '" + newName + "' WHERE trainerId = " + id);
                                 StmtDisconnect();
                                 break metka;
                             case "3":
-                                System.out.println("Введите новую фамилию");
+                                System.out.println("Enter new surname: ");
                                 String newSurname = printOpt.nextLine();
                                 stmt.execute("UPDATE Trainer SET trainerSurname = '" + newSurname + "' WHERE trainerId = " + id);
                                 StmtDisconnect();
@@ -199,7 +199,7 @@ public class TrainerMethods {
         stmt.execute("SELECT * FROM Trainer");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано Тренеров. Пожалуйста, создайте студента.");
+            System.out.println("Not created trainers. Please, create trainer.");
         } else {
             stmt.execute("SELECT * FROM Trainer");
             res = stmt.getResultSet();
@@ -207,7 +207,7 @@ public class TrainerMethods {
                 int id = res.getInt("trainerId");
                 String name = res.getString("trainerName");
                 String surname = res.getString("trainerSurname");
-                System.out.println("\t" + list + ") ID [" + id + "]; " + "Имя: " + name + ", Фамилия: " + surname + ".");
+                System.out.println("\t" + list + ") ID [" + id + "]; " + "Name: " + name + ", Surname: " + surname + ".");
                 list++;
             }
         }
@@ -221,24 +221,24 @@ public class TrainerMethods {
         ResDisconnect();
 
         Scanner printOpt = new Scanner(System.in);
-        while (true) {
-            System.out.println("Введите ID курса, который будет преподавать тренер:");
-            String addTrainerID = printOpt.nextLine();
-            if (checkIDforValid(addTrainerID)) {
-                Integer addTrainerIDint = new Integer(addTrainerID);
-                if (addTrainerIDint <= maxCourse) {
-                    System.out.println("Такого курса не найдено");
-                    break;
+        System.out.println("Enter ID course, on which will teach trainer:");
+        String addTrainerID = printOpt.nextLine();
+        if (checkIDforValid(addTrainerID)) {
+            Integer addTrainerIDint = new Integer(addTrainerID);
+            if (addTrainerIDint <= maxCourse) {
+                try {
+                        if (addTrainerIDint <= maxCourse & addTrainerIDint > 0) {
+                            stmt.execute("INSERT INTO TrainerCourse (idTrainer, idCourse) VALUES (" + "" + id + "," + addTrainerIDint + ")");
+                            StmtDisconnect();
+                        }
+                } catch (SQLException e) {
+                    System.out.println("[Invalid command]");
                 }
-                if (addTrainerIDint <= maxCourse & addTrainerIDint > 0) {
-                    stmt.execute("INSERT INTO TrainerCourse (idTrainer, idCourse) VALUES (" + "" + id + "," + addTrainerIDint + ")");
-                    StmtDisconnect();
-                    break;
-                }
-            } else {
-                System.out.println("[Invalid command]");
             }
+        } else {
+            System.out.println("[Invalid command]");
         }
+
     } //OK!
 
     private void delTrainerCourse(Integer id) throws SQLException {
@@ -250,12 +250,12 @@ public class TrainerMethods {
 
         Scanner printOpt = new Scanner(System.in);
         while (true) {
-            System.out.println("Введите ID курса, который хотите удалить:");
+            System.out.println("Enter ID course, which the want to delete: ");
             String addTrainerID = printOpt.nextLine();
             if (checkIDforValid(addTrainerID)) {
                 Integer addTrainerIDint = new Integer(addTrainerID);
                 if (addTrainerIDint <= maxCourse) {
-                    System.out.println("Такого курса не найдено");
+                    System.out.println("This course not found.");
                     break;
                 }
                 if (addTrainerIDint <= maxCourse & addTrainerIDint > 0) {

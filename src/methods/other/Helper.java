@@ -1,5 +1,7 @@
 package  methods.other;
-    /** Блок, показывающий все команды. */
+    /**
+     *  Блок, показывающий все команды.
+     * */
 public class Helper {
     public static void helper() {
         System.out.println(

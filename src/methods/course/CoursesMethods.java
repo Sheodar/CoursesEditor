@@ -10,21 +10,21 @@ import static methods.dataBase.ConnectionDB.*;
 public class CoursesMethods {
     public void createCourse() throws SQLException {
         Scanner printOpt = new Scanner(System.in);
-        System.out.println("Введите название курса:");
+        System.out.println("Enter name course:");
         String courseName = printOpt.nextLine();
-        System.out.println("Введите описание курса:");
+        System.out.println("Enter specification course:");
         String specification = printOpt.nextLine();
-        System.out.println("Введите год начала курсов:");
+        System.out.println("Enter year start course:");
         String dateYearStart = printOpt.nextLine();
-        System.out.println("Введите месяц начала курсов:");
+        System.out.println("Enter month start course:");
         String dateMonthStart = printOpt.nextLine();
-        System.out.println("Введите день начала курсов:");
+        System.out.println("Enter day start course:");
         String dateDayStart = printOpt.nextLine();
-        System.out.println("Введите год окончания курсов:");
+        System.out.println("Enter year finish course:");
         String dateYearFinish = printOpt.nextLine();
-        System.out.println("Введите месяц окончания курсов:");
+        System.out.println("Enter month finish course:");
         String dateMonthFinish = printOpt.nextLine();
-        System.out.println("Введите день окончания курсов:");
+        System.out.println("Enter day finish course:");
         String dateDayFinish = printOpt.nextLine();
 
         stmt.execute("INSERT INTO Course (courseName, specification, dateDayStart,dateMonthStart,dateYearStart," +
@@ -36,7 +36,7 @@ public class CoursesMethods {
         int index = res.getInt("courseId");
         StmtDisconnect();
         ResDisconnect();
-        System.out.println("ID курса: " + index);
+        System.out.println("ID course: " + index);
         dayOfWeekCourseMethod(index);
     } // OK!
 
@@ -45,7 +45,7 @@ public class CoursesMethods {
         stmt.execute("SELECT * FROM Course");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано курсов. Пожалуйста, создайте курс.");
+            System.out.println("Not created courses. Please, create course.");
         } else {
             if (checkIDforValid(ID)) {
                 Integer id = new Integer(ID);
@@ -72,12 +72,12 @@ public class CoursesMethods {
                     int quantityStudents = res.getInt("quantityStudents");
                     StmtDisconnect();
                     ResDisconnect();
-                    System.out.println("ID: [" + Id + "]; " + "Количество студентов: [" + quantityStudents + "];" +
-                            "\nНазвание: " + name + ";" +
-                            "\nОписание: " + specification +
-                            "\nДата начала: " + dateDayStart + "." + dateMonthStart + "." + dateYearStart + "." +
-                            "\nДата окончания: " + dateDayFinish + "." + dateMonthFinish + "." + dateYearFinish + ".");
-                    System.out.println("\tТренеры курса: ");
+                    System.out.println("ID: [" + Id + "]; " + "Quantity students: [" + quantityStudents + "];" +
+                            "\nName course: " + name + ";" +
+                            "\nSpecification: " + specification +
+                            "\nDate start: " + dateDayStart + "." + dateMonthStart + "." + dateYearStart + "." +
+                            "\nDate finish: " + dateDayFinish + "." + dateMonthFinish + "." + dateYearFinish + ".");
+                    System.out.println("\tCourses trainers: ");
                     stmt.execute("SELECT Trainer.*, TrainerCourse.* FROM Trainer INNER JOIN TrainerCourse  ON Trainer.trainerId = TrainerCourse.idTrainer AND TrainerCourse.idCourse = " + id);
                     res = stmt.getResultSet();
 
@@ -102,43 +102,43 @@ public class CoursesMethods {
         StmtDisconnect();
         ResDisconnect();
         if (ID > maxCourse | ID < 0) {
-            System.out.println("ОШИБКА! Еще не создано курсов. Пожалуйста, создайте курс.");
+            System.out.println("Not created courses. Please, create course.");
         } else {
             String changeCourse;
             do {
-                System.out.println("[1]- Изменить дату; [2]- Изменить название; [3]- Изменить описание; [4]- Назад;");
+                System.out.println("[1]- Change date; [2]- Change name; [3]- Change specification; [4]- Back;");
                 changeCourse = printOpt.nextLine();
                 switch (changeCourse) {
                     case "1":
                         String changeCourseDate;
                         do {
-                            System.out.println("[1]- Изменить начало; [2]- Изменить конец; [3]- Изменить дни недели; [4]- Назад;");
+                            System.out.println("[1]- Change start date; [2]- Change finish date; [3]- Change weekday; [4]- Back;");
                             changeCourseDate = printOpt.nextLine();
                             switch (changeCourseDate) {
                                 case "1":
-                                    System.out.println("Введите год начала курсов:");
+                                    System.out.println("Enter year start course:");
                                     String newStartYear = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateYearStart = '" + newStartYear + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
-                                    System.out.println("Введите месяц начала курсов:");
+                                    System.out.println("Enter month start course:");
                                     String newStartMouth = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateMonthStart = '" + newStartMouth + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
-                                    System.out.println("Введите год начала курсов:");
+                                    System.out.println("Enter day start course:");
                                     String newStartDay = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateDayStart = '" + newStartDay + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
                                     break;
                                 case "2":
-                                    System.out.println("Введите год начала курсов:");
+                                    System.out.println("Enter year finish course:");
                                     String newFinishYear = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateYearFinish = '" + newFinishYear + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
-                                    System.out.println("Введите месяц начала курсов:");
+                                    System.out.println("Enter month finish course:");
                                     String newFinishMouth = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateMonthFinish = '" + newFinishMouth + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
-                                    System.out.println("Введите год начала курсов:");
+                                    System.out.println("Enter day finish course:");
                                     String newFinishDay = printOpt.nextLine();
                                     stmt.execute("UPDATE Course SET dateDayFinish = '" + newFinishDay + "' WHERE courseId = " + ID);
                                     StmtDisconnect();
@@ -162,13 +162,13 @@ public class CoursesMethods {
                         } while (!(Objects.equals(changeCourseDate, "4")));
                         break;
                     case "2":
-                        System.out.println("Введите название курса:");
+                        System.out.println("Enter name course:");
                         String newName = printOpt.nextLine();
                         stmt.execute("UPDATE Course SET courseName = '" + newName + "' WHERE courseId = " + ID);
                         StmtDisconnect();
                         break;
                     case "3":
-                        System.out.println("Введите писание курса:");
+                        System.out.println("Enter specification course:");
                         String newSpecification = printOpt.nextLine();
                         stmt.execute("UPDATE Course SET specification = '" + newSpecification + "' WHERE courseId = " + ID);
                         StmtDisconnect();
@@ -202,7 +202,7 @@ public class CoursesMethods {
         stmt.execute("SELECT * FROM Course");
         res = stmt.getResultSet();
         if (!res.next()) {
-            System.out.println("Еще не создано курсов. Пожалуйста, создайте курс.");
+            System.out.println("Not created courses. Please, create course.");
         } else {
             try {
                 if (checkIDforValid(id)) {
@@ -220,7 +220,7 @@ public class CoursesMethods {
                         while (res.next()) {
                             String nameStudent = res.getString("studentName");
                             String surnameStudent = res.getString("studentSurname");
-                            System.out.println("\t\t " + list + ") Имя: " + nameStudent + " Фамилия: " + surnameStudent + ".");
+                            System.out.println("\t\t " + list + ") Name: " + nameStudent + " Surname: " + surnameStudent + ".");
                             list++;
                         }
                         StmtDisconnect();
@@ -244,15 +244,15 @@ public class CoursesMethods {
         Scanner printOpt = new Scanner(System.in);
         metka:
         while (true) {
-            System.out.println("Задайте день недели для курса");
+            System.out.println("Enter weekday for course");
             String dayOfWeek = printOpt.nextLine();
             stmt.execute("INSERT INTO CourseWeekDay (idCourse, day) VALUES(" + index + ",'" + dayOfWeek + "')");
             while (true) {
-                System.out.println("Еще день?[y/n]");
+                System.out.println("More?[y/n]");
                 String addDayOfWeekWork = printOpt.nextLine();
                 switch (addDayOfWeekWork) {
                     case "y":
-                        System.out.println("Задайте день недели для курса");
+                        System.out.println("Enter weekday for course");
                         String addDayOfWeek = printOpt.nextLine();
                         stmt.execute("INSERT INTO CourseWeekDay (idCourse, day) VALUES(" + index + ",'" + addDayOfWeek + "')");
                         break;

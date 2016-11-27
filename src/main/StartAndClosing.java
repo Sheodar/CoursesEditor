@@ -26,7 +26,7 @@ public class StartAndClosing {
         Scanner printOpt = new Scanner(System.in);
         metka1:
         while (true) {
-            System.out.println("Уверены, что хотите выйти? [y/n]");
+            System.out.println("Sure? [y/n]");
             String quit = printOpt.nextLine();
             switch (quit) {
                 case "y":
@@ -44,9 +44,9 @@ public class StartAndClosing {
     public void startProgram() throws SQLException {
         DBConnect();
         Scanner commands = new Scanner(System.in);
-        System.out.println("Добро пожаловать.\n____________________________");
+        System.out.println("Welcome!\n____________________________");
         while (true) {
-            System.out.println("Введите команду");
+            System.out.println("Enter the command");
             String star = commands.nextLine();
             String[] test = new String[4];
             if (check(star)) {

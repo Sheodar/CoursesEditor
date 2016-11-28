@@ -89,7 +89,7 @@ public class CoursesMethods {
 
                     while (res.next()) {
                         String trainerName = res.getString("trainerName");
-                        System.out.println("\t\t ‣ " + trainerName + ".");
+                        System.out.println("\t\t - " + trainerName + ".");
                     }
                     StmtDisconnect();
                     ResDisconnect();
@@ -196,7 +196,7 @@ public class CoursesMethods {
         while (res.next()) {
             int id = res.getInt("courseId");
             String name = res.getString("courseName");
-            System.out.println("‣ ID [" + id + "]; Название: " + name + ".");
+            System.out.println("- ID [" + id + "]; Название: " + name + ".");
         }
 
         StmtDisconnect();

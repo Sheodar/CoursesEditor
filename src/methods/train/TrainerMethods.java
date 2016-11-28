@@ -112,7 +112,7 @@ public class TrainerMethods {
                         while (res.next()) {
                             String nameCourse = res.getString("courseName");
                             String idCourse = res.getString("courseId");
-                            System.out.println("\t\t ‣ Name: " + nameCourse + ". ID ["+idCourse+"]");
+                            System.out.println("\t\t - Name: " + nameCourse + ". ID ["+idCourse+"]");
                         }
                         StmtDisconnect();
                         ResDisconnect();

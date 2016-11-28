@@ -15,7 +15,7 @@ import static methods.utils.Patterns.checkIDforValid;
 import static methods.dataBase.ConnectionDB.DBConnect;
 import static methods.dataBase.ConnectionDB.DBDisconnect;
 
-public class StartAndClosing {
+public class StartProgram {
     private static TrainerMethods startTrainer = new TrainerMethods();
     private static StudentMethods startStudent = new StudentMethods();
     private static CoursesMethods startCourse = new CoursesMethods();

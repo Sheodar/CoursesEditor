@@ -2,13 +2,14 @@ package methods.course;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import static methods.utils.Patterns.checkIDforValid;
-import static methods.utils.Randomaizer.random;
 import static methods.dataBase.ConnectionDB.*;
 
 public class QuestMethod {
+    private  static Random random = new Random();
     public static void createQuest(Integer idCourse) throws SQLException {
         Scanner printOpt = new Scanner(System.in);
         System.out.println("Enter Question: ");
@@ -38,7 +39,7 @@ public class QuestMethod {
         ResDisconnect();
         for (Integer anIdStudentForQuestion : idStudentForQuestion) {
             int id = anIdStudentForQuestion;
-            stmt.execute("INSERT INTO StudentQuestion (idStudent, idQuestion, studentEvalation) VALUES(" + id + "," + thisQuestion + "," + random() + ")");
+            stmt.execute("INSERT INTO StudentQuestion (idStudent, idQuestion, studentEvalation) VALUES(" + id + "," + thisQuestion + "," + (random.nextInt(100)+1) + ")");
         }
         ResDisconnect();
         StmtDisconnect();

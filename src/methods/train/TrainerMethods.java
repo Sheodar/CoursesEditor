@@ -250,23 +250,29 @@ public class TrainerMethods {
         ResDisconnect();
 
         Scanner printOpt = new Scanner(System.in);
-        while (true) {
-            System.out.println("Enter ID course, which the want to delete: ");
-            String addTrainerID = printOpt.nextLine();
-            if (checkIDforValid(addTrainerID)) {
-                Integer addTrainerIDint = new Integer(addTrainerID);
-                if (addTrainerIDint <= maxCourse) {
-                    System.out.println("This course not found.");
-                    break;
-                }
-                if (addTrainerIDint <= maxCourse & addTrainerIDint > 0) {
-                    stmt.execute("DELETE FROM TrainerCourse WHERE idCourse = " + addTrainerIDint + "AND idTrainer = " + id);
+        System.out.println("Enter ID course, which the want to delete: ");
+        String delTrainerID = printOpt.nextLine();
+        if (checkIDforValid(delTrainerID)) {
+            Integer delTrainerIDint = new Integer(delTrainerID);
+            if (delTrainerIDint <= maxCourse) {
+                try {
+                    stmt.execute("SELECT * FROM  TrainerCourse  WHERE   idCourse = " + delTrainerIDint + " AND idTrainer = " + id);
+                    res = stmt.getResultSet();
                     StmtDisconnect();
-                    break;
+                    ResDisconnect();
+
+                    if (delTrainerIDint <= maxCourse & delTrainerIDint > 0) {
+                        stmt.execute("DELETE FROM TrainerCourse WHERE idCourse = " + delTrainerIDint);
+                        StmtDisconnect();
+                    }
+                } catch (SQLException w) {
+                    System.out.println("[Invalid command]");
                 }
             } else {
                 System.out.println("[Invalid command]");
             }
+        } else {
+            System.out.println("[Invalid command]");
         }
     } //OK!
 

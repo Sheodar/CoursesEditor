@@ -111,7 +111,8 @@ public class TrainerMethods {
 
                         while (res.next()) {
                             String nameCourse = res.getString("courseName");
-                            System.out.println("\t\t ‣ Name: " + nameCourse + ".");
+                            String idCourse = res.getString("courseId");
+                            System.out.println("\t\t ‣ Name: " + nameCourse + ". ID ["+idCourse+"]");
                         }
                         StmtDisconnect();
                         ResDisconnect();

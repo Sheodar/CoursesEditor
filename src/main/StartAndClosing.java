@@ -44,7 +44,7 @@ public class StartAndClosing {
     public void startProgram() throws SQLException {
         DBConnect();
         Scanner commands = new Scanner(System.in);
-        System.out.println("Welcome!\n____________________________");
+        System.out.println("\nWelcome!\n____________________________");
         while (true) {
             System.out.println("Enter the command");
             String star = commands.nextLine();

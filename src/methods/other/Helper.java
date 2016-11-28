@@ -1,6 +1,6 @@
 package  methods.other;
     /**
-     *  Блок, показывающий все команды.
+     *  All commands.
      * */
 public class Helper {
     public static void helper() {

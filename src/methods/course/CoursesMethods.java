@@ -8,6 +8,10 @@ import static methods.other.Patterns.checkIDforValid;
 import static methods.dataBase.ConnectionDB.*;
 
 public class CoursesMethods {
+    /**
+     *  Create new <b>course.</b>
+     *  <br><b>Immediately</b> added to the database.
+     */
     public void createCourse() throws SQLException {
         Scanner printOpt = new Scanner(System.in);
         System.out.println("Enter name course:");
@@ -40,7 +44,9 @@ public class CoursesMethods {
         dayOfWeekCourseMethod(index);
     } // OK!
 
-
+    /**
+     *  Print one course on ID.
+     */
     public void printSoloCourse(String ID) throws SQLException {
         stmt.execute("SELECT * FROM Course");
         res = stmt.getResultSet();

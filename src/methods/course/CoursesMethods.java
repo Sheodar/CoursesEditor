@@ -219,7 +219,7 @@ public class CoursesMethods {
                         stmt.execute("SELECT * FROM Course WHERE courseId = " + idCourse);
                         res = stmt.getResultSet();
                         String courseName = res.getString("courseName");
-                        System.out.println("______________________________\nСтудент(ы), учащиися на курсе [" + courseName + "]: ");
+                        System.out.println("______________________________\nStudents on the course [" + courseName + "]: ");
 
                         stmt.execute("SELECT Student.*, StudentCourse.* FROM Student INNER JOIN StudentCourse  ON StudentCourse.idCourse = " + idCourse + " AND Student.studentId = StudentCourse.idStudent");
                         res = stmt.getResultSet();

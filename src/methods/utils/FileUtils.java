@@ -1,4 +1,4 @@
-package  methods.utils;
+package methods.utils;
 
 
 import java.io.File;
@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static methods.dataBase.ConnectionDB.*;
-import static  methods.dataBase.ConnectionDB.res;
+import static methods.dataBase.ConnectionDB.res;
 import static methods.dataBase.ConnectionDB.stmt;
 import static methods.utils.Patterns.checkIDforValid;
 
 public class FileUtils {
-    public void Write(String id) throws SQLException {
+    public void saveJournalCourse(String id) throws SQLException {
         try {
             int list = 1;
             try {
@@ -47,7 +47,7 @@ public class FileUtils {
                             String date = new java.util.Date().toString();
                             String[] dateMassive;
                             dateMassive = date.trim().split("[ :]");
-                            String fileName = nameCourse + " " + dateMassive[2] + " " + dateMassive[1] + "." + dateMassive[7] + ", " + dateMassive[3] + "." + dateMassive[4] + "." + dateMassive[5] + ".txt";
+                            String fileName = nameCourse + " " + dateMassive[7] + "_" + dateMassive[2] + dateMassive[1] + "_" + dateMassive[3] + "_" + dateMassive[4] + "_" + dateMassive[5] + ".txt";
 
                             File file = new File("Archive/" + fileName);
 
@@ -88,12 +88,12 @@ public class FileUtils {
                             writer.write("Date: " + dateMassive[2] + " " + dateMassive[1] + "." + dateMassive[7] + ", " + dateMassive[3] + "." + dateMassive[4] + "." + dateMassive[5]);
                             writer.flush();
                             enableQuestions.clear();
-                        }else {
+                        } else {
                             System.out.println("[Invalid command]");
                         }
                     }
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 System.out.println("[Invalid command]");
             }
         } catch (IOException e) {

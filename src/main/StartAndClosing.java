@@ -24,7 +24,7 @@ public class StartAndClosing {
 
     private static void closeProgram() {
         Scanner printOpt = new Scanner(System.in);
-        metka1:
+        metka:
         while (true) {
             System.out.println("Sure? [y/n]");
             String quit = printOpt.nextLine();
@@ -34,7 +34,7 @@ public class StartAndClosing {
                     System.exit(0);
                     break;
                 case "n":
-                    break metka1;
+                    break metka;
                 default:
                     break;
             }
@@ -107,7 +107,7 @@ public class StartAndClosing {
                         switch (test[1]) {
                             case "journal":
                                 try {
-                                    startWork.Write(test[2]);
+                                    startWork.saveJournalCourse(test[2]);
                                 } catch (Exception e) {
                                     System.out.println("[Invalid command]");
                                 }

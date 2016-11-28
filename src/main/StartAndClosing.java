@@ -2,16 +2,16 @@ package main;
 
 import  methods.course.CoursesMethods;
 import  methods.course.QuestMethod;
-import methods.other.WorkingFiles;
+import methods.utils.FileUtils;
 import methods.student.StudentMethods;
 import methods.train.TrainerMethods;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static methods.other.Helper.helper;
-import static methods.other.Patterns.check;
-import static methods.other.Patterns.checkIDforValid;
+import static methods.utils.Helper.helper;
+import static methods.utils.Patterns.check;
+import static methods.utils.Patterns.checkIDforValid;
 import static methods.dataBase.ConnectionDB.DBConnect;
 import static methods.dataBase.ConnectionDB.DBDisconnect;
 
@@ -20,9 +20,9 @@ public class StartAndClosing {
     private static StudentMethods startStudent = new StudentMethods();
     private static CoursesMethods startCourse = new CoursesMethods();
     private static QuestMethod startQuest = new QuestMethod();
-    private static WorkingFiles startWork = new WorkingFiles();
+    private static FileUtils startWork = new FileUtils();
 
-    private void closeProgram() {
+    private static void closeProgram() {
         Scanner printOpt = new Scanner(System.in);
         metka1:
         while (true) {
@@ -41,7 +41,7 @@ public class StartAndClosing {
         }
     }
 
-    public void startProgram() throws SQLException {
+    public static void main(String[]args) throws SQLException {
         DBConnect();
         Scanner commands = new Scanner(System.in);
         System.out.println("\nWelcome!\n____________________________");

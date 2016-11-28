@@ -1,4 +1,4 @@
-package  methods.other;
+package  methods.utils;
     /**
      *  All commands.
      * */

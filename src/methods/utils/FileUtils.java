@@ -1,4 +1,4 @@
-package  methods.other;
+package  methods.utils;
 
 
 import java.io.File;
@@ -6,14 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static methods.dataBase.ConnectionDB.*;
 import static  methods.dataBase.ConnectionDB.res;
 import static methods.dataBase.ConnectionDB.stmt;
-import static methods.other.Patterns.checkIDforValid;
+import static methods.utils.Patterns.checkIDforValid;
 
-public class WorkingFiles {
+public class FileUtils {
     public void Write(String id) throws SQLException {
         try {
             int list = 1;

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static methods.other.Patterns.checkIDforValid;
+import static methods.utils.Patterns.checkIDforValid;
 import static methods.dataBase.ConnectionDB.*;
 
 public class CoursesMethods {

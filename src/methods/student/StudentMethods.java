@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static methods.other.Patterns.checkIDforValid;
+import static methods.utils.Patterns.checkIDforValid;
 import static methods.course.QuestMethod.evaluationStudentForCourse;
 import static methods.dataBase.ConnectionDB.*;
 
@@ -135,23 +135,23 @@ public class StudentMethods {
                         stmt.execute("SELECT Course.*, StudentCourse.* FROM Course INNER JOIN StudentCourse  ON Course.courseId = StudentCourse.idCourse AND StudentCourse.idStudent = " + idStud);
                         res = stmt.getResultSet();
 
-                        ArrayList<Integer> qwe = new ArrayList<>();
-                        ArrayList<String> qwer = new ArrayList<>();
+                        ArrayList<Integer> collectionIdCourse = new ArrayList<>();
+                        ArrayList<String> collectionNameCourse = new ArrayList<>();
                         while (res.next()) {
                             int idCourse = res.getInt("idCourse");
                             String nameCourse = res.getString("courseName");
-                            qwer.add(nameCourse);
-                            qwe.add(idCourse);
+                            collectionNameCourse.add(nameCourse);
+                            collectionIdCourse.add(idCourse);
                         }
                         StmtDisconnect();
                         ResDisconnect();
-                        for (int z = 0; z < qwe.size(); z++) {
-                            System.out.print("\t\t " + list + ") Name: " + qwer.get(z) + ".");
-                            evaluationStudentForCourse(idStud, qwe.get(z));
+                        for (int z = 0; z < collectionIdCourse.size(); z++) {
+                            System.out.print("\t\t " + list + ") Name: " + collectionNameCourse.get(z) + ".");
+                            evaluationStudentForCourse(idStud, collectionIdCourse.get(z));
                             list++;
                         }
-                        qwe.clear();
-                        qwer.clear();
+                        collectionIdCourse.clear();
+                        collectionNameCourse.clear();
                     }
                 } else {
                     System.out.println("[Invalid command]");

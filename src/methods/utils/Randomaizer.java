@@ -1,4 +1,4 @@
-package  methods.other;
+package  methods.utils;
 
 import java.util.Random;
 

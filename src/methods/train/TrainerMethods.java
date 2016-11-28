@@ -3,7 +3,7 @@ package methods.train;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static methods.other.Patterns.checkIDforValid;
+import static methods.utils.Patterns.checkIDforValid;
 import static methods.dataBase.ConnectionDB.*;
 import static methods.dataBase.ConnectionDB.StmtDisconnect;
 import static methods.dataBase.ConnectionDB.stmt;

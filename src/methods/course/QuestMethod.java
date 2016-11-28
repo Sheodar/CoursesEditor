@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static methods.other.Patterns.checkIDforValid;
-import static methods.other.Randomaizer.random;
+import static methods.utils.Patterns.checkIDforValid;
+import static methods.utils.Randomaizer.random;
 import static methods.dataBase.ConnectionDB.*;
 
 public class QuestMethod {

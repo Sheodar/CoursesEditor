@@ -16,7 +16,7 @@ public class ConnectionDB {
         conn = null;
         try {
             conn = DriverManager.getConnection(urll);
-            System.out.println("DataBase <CONNECTION> is connected.");
+            System.out.println("DataBase <CONNECTION> is connected!");
             stmt = conn.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -26,7 +26,7 @@ public class ConnectionDB {
     public static void DBDisconnect() {
         try {
             if (conn != null) {
-                System.out.println("DataBase <CONNECTION> is disconnected.");
+                System.out.println("DataBase <CONNECTION> is disconnected!");
                 conn.close();
             }
         } catch (SQLException e) {

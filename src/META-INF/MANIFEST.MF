@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
 Test-Class: main.StartProgram
+Main-Class: main.StartProgram
 

@@ -44,7 +44,7 @@ public class StartProgram {
     public static void main(String[]args) throws SQLException {
         DBConnect();
         Scanner commands = new Scanner(System.in);
-        System.out.println("\nWelcome!\n____________________________");
+        System.out.println("\nWelcome!!!\n____________________________");
         while (true) {
             System.out.println("Enter the command");
             String star = commands.nextLine();
